@@ -14,6 +14,7 @@ public class Chassis extends SubsystemBase {
   // private double[] weights;
 
   public Chassis() {
+    // It reads the number of modules from the RobotConstants
     modules = new SwerveModule[RobotConstants.MOD_CONFIGS.length];
     for (int i = 0; i < RobotConstants.MOD_CONFIGS.length; i++) {
       switch (RobotConstants.ROBOT) {

@@ -8,6 +8,7 @@ import com.ctre.phoenix.sensors.CANCoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxRelativeEncoder.Type;
 import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
@@ -18,8 +19,6 @@ import frc.robot.Classes.ModuleConfig;
 /** Add your docs here. */
 public class NeoModule implements SwerveModule {
     protected ModuleConfig config;
-    // protected Spark drive;
-    // protected Spark steer;
 
     protected CANSparkMax drive;
     protected CANSparkMax steer;
@@ -27,7 +26,7 @@ public class NeoModule implements SwerveModule {
 
     protected SparkMaxPIDController steerPID;
     private RelativeEncoder steer_encoder;
-    public double steer_P, steer_I, steer_D, steer_Iz, steer_FF, steer_MaxOutput, steer_MinOutput;
+    private double steer_P, steer_I, steer_D, steer_Iz, steer_FF, steer_MaxOutput, steer_MinOutput;
 
     
     NeoModule(ModuleConfig config) {
@@ -38,7 +37,6 @@ public class NeoModule implements SwerveModule {
         drive = new CANSparkMax(this.config.driveID, MotorType.kBrushless);
         steer = new CANSparkMax(this.config.steerID, MotorType.kBrushless);
         enc = new CANCoder(this.config.encID);
-
     }   
 
     @Override
@@ -55,7 +53,7 @@ public class NeoModule implements SwerveModule {
     steer_encoder = steer.getEncoder();
 
     // PID coefficients
-    steer_P = 0.1; 
+    steer_P = 0.1;
     steer_I = 1e-4;
     steer_D = 1; 
     steer_Iz = 0; 
@@ -70,13 +68,11 @@ public class NeoModule implements SwerveModule {
     steerPID.setIZone(steer_Iz);
     steerPID.setFF(steer_FF);
     steerPID.setOutputRange(steer_MinOutput, steer_MaxOutput);
-
     }
 
     @Override
     public void resetToAbsolute() {
         // TODO Auto-generated method stub
-        
     }
 
     @Override
@@ -92,7 +88,7 @@ public class NeoModule implements SwerveModule {
 
     @Override
     public Rotation2d getAbsEncoderPosition() {
-        // TODO Auto-generated method stub
+        // return steer.getAbsoluteEncoder(Type.kHallSensor); //TODO
         return null;
     }
 
@@ -104,7 +100,6 @@ public class NeoModule implements SwerveModule {
 
     @Override
     public SwerveModulePosition getPosition() {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -121,7 +116,7 @@ public class NeoModule implements SwerveModule {
 
     @Override
     public void setState(SwerveModuleState state) {
-        // TODO Auto-generated method stub
-        
+        setRotation(state.angle);
+        setVelocity(state.speedMetersPerSecond);
     }
 }
