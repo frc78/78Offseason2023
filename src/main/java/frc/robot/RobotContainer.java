@@ -13,13 +13,23 @@ import frc.robot.Commands.*;
 
 public class RobotContainer {
   private Chassis m_chassis;
-  private XboxController m_drive_controller;
+  private XboxController m_driveController;
 
   public RobotContainer() {
     m_chassis = new Chassis();
 
-    m_chassis.setDefaultCommand(new Drive(m_chassis, m_drive_controller));
-    configureBindings();
+    m_chassis.setDefaultCommand(new Drive(
+      m_chassis,
+      m_driveController::getLeftY,
+      m_driveController::getLeftX,
+      m_driveController::getRightX,
+      m_driveController::getLeftTriggerAxis,
+      m_driveController::getRightTriggerAxis,
+      m_driveController::getYButton,
+      m_driveController::getBButton,
+      m_driveController::getAButton,
+      m_driveController::getXButton
+      ));
   }
 
   private void configureBindings() {}

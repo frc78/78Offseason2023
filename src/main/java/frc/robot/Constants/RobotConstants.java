@@ -38,4 +38,9 @@ public class RobotConstants {
         new ModuleConfig(5, 6, 11, 0.0),
         new ModuleConfig(7, 8, 12, 0.0)
     };
+
+    public static final int PIGEON_ID = 0;
+
+    public static final double MAX_SPEED = 4.0; //TODO
+    public static final double MAX_ANGULAR_VELOCITY = 0.0; //TODO
 }

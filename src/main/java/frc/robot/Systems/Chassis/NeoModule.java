@@ -106,7 +106,6 @@ public class NeoModule implements SwerveModule {
     @Override
     public void setVelocity(double velocity) {
         drive.set(velocity);
-        
     }
 
     @Override
