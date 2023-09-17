@@ -11,7 +11,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.Classes.ModuleConfig;
 
-/** Add your docs here. */
+/** Falcon implementation of SwerveModule */
 public class FalconModule implements SwerveModule {
     protected ModuleConfig config;
     protected TalonFX drive;

@@ -9,13 +9,12 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.SlewRateLimiter;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.Systems.Chassis.Chassis;
 
-/** TODO this is a stub for the driving command */
+/** This is the command for teleoperation of the chassis */
 public class Drive extends CommandBase{
     private Chassis chassis;
     private final DoubleSupplier xSupplier;
@@ -50,7 +49,7 @@ public class Drive extends CommandBase{
     yLimiter = new SlewRateLimiter(11, -11, 0);
     thetaLimiter = new SlewRateLimiter(30, -30, 0);
 
-    thetaPID = new PIDController(2.5, 7, 0.16); // almost perfect
+    thetaPID = new PIDController(2.5, 7, 0.16); // TODO almost perfect
     // thetaPID = new PIDController(5, 0, 0.025); good for 90 turns
     // thetaPID = new PIDController(5, 0, 0);
     thetaPID.enableContinuousInput(-Math.PI, Math.PI);
@@ -59,14 +58,9 @@ public class Drive extends CommandBase{
   }
 
   @Override
-  public void initialize() {
-
-  }
-
-  @Override
   public void execute() {
-    // maps the Y, B, A, X buttons to create a vector and then gets the direction of the vector using trig,
-    // then normalizes it to [0, 2 * PI)
+    // Maps the Y, B, A, X buttons to create a vector and then gets the direction of the vector using trigonometry,
+    // then fits it to the range [0, 2 * PI)
     double x = (upSupplier.getAsBoolean() ? 1 : 0) - (downSupplier.getAsBoolean() ? 1 : 0);
     double y = (rightSupplier.getAsBoolean() ? 1 : 0) - (leftSupplier.getAsBoolean() ? 1 : 0);
     double dir = Math.atan2(y, x);

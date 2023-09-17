@@ -16,7 +16,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import frc.robot.Classes.ModuleConfig;
 
-/** Add your docs here. */
+/** Neo implementation of SwerveModule */
 public class NeoModule implements SwerveModule {
     protected ModuleConfig config;
 

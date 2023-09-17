@@ -23,6 +23,22 @@ import frc.robot.Constants.Constants.ROBOT_TYPE;
 //         new ModuleConfig(5, 6, 11, 0.0),
 //         new ModuleConfig(7, 8, 12, 0.0)
 //     };
+
+//     public static final int PIGEON_ID = 0;
+
+//     public static final double MAX_SPEED = 4.0; //TODO
+//     public static final double MAX_ANGULAR_VELOCITY = 0.0; //TODO
+
+//     // SHOOTER
+
+//     public static final int FLYWHEEL_L_ID = 0; //TODO
+//     public static final int FLYWHEEL_R_ID = 0; //TODO
+//     public static final int BACK_FLYWHEEL_ID = 0; //TODO
+//     public static final int FEED_ID = 0; //TODO
+//     public static final int BELT_ID = 0; //TODO
+
+//     /** Hood's angle of elevation in degrees */
+//     public static final double HOOD_ANGLE = 45.0; //TODO
 // }
 
 /** This is the constants for the NEO */
@@ -43,4 +59,15 @@ public class RobotConstants {
 
     public static final double MAX_SPEED = 4.0; //TODO
     public static final double MAX_ANGULAR_VELOCITY = 0.0; //TODO
+
+    // SHOOTER
+
+    public static final int FLYWHEEL_M_ID = 0; //TODO
+    public static final int FLYWHEEL_R_ID = 0; //TODO
+    public static final int BACK_FLYWHEEL_ID = 0; //TODO
+    public static final int FEED_ID = 0; //TODO
+    public static final int BELT_ID = 0; //TODO
+
+    /** Hood's angle of elevation in degrees */
+    public static final double HOOD_ANGLE = 45.0; //TODO
 }

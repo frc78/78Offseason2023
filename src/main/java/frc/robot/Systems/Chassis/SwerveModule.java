@@ -8,8 +8,10 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
-/** This is the parent interface for a SwerveModule. */
-// Recourse for this can be found in the repository wiki, https://github.com/AquidneckIslandRobotics/78Offseason2023/wiki/Concepts
+/** This is the parent interface for a SwerveModule. 
+ * It is used to define the methods that all SwerveModules must implement.
+ * Recourse for this can be found in the repository wiki, https://github.com/AquidneckIslandRobotics/78Offseason2023/wiki/Concepts
+*/
 public interface SwerveModule {
     public void initialize ();
     public void resetToAbsolute ();

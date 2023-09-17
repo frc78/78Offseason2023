@@ -4,11 +4,15 @@
 
 package frc.robot.Systems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Arm extends SubsystemBase {
-  /** Creates a new Arm. */
-  public Arm() {}
+public class Belt extends SubsystemBase {
+  /** Creates a new Belt. */
+  private TalonFX flywheel2;
+
+  public Belt() {}
 
   @Override
   public void periodic() {
