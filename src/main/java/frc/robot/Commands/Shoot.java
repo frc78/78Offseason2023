@@ -45,7 +45,7 @@ public class Shoot extends CommandBase {
     return false;
   }
 
-  /** Calculates the velocity using parabolic model and then adjusted with test values */
+  /** Calculates the velocity using parabolic model and then adjusted with test values. Andrew's baby */
   double calcVel(double deltaX, double deltaY, double exitTheta) {
     double g = -9.81;
     double num = g * Math.pow(deltaX, 2);
