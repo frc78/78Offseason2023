@@ -4,6 +4,9 @@
 
 package frc.robot.Constants;
 
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.math.util.Units;
 import frc.robot.Classes.ModuleConfig;
 import frc.robot.Constants.Constants.ROBOT_TYPE;
@@ -46,7 +49,7 @@ public class RobotConstants {
     public static final ROBOT_TYPE ROBOT = ROBOT_TYPE.NEO;
 
     public static final double WHEEL_WIDTH = Units.inchesToMeters(18.75); //Make sure this is from the wheel's center of rotation
-    public static final double WHEEL_CIRCUMFERENCE = Units.inchesToMeters(4); //TODO
+    public static final double WHEEL_DIAMETER = Units.inchesToMeters(4); //TODO
     
     public static final ModuleConfig[] MOD_CONFIGS = {
         new ModuleConfig(1, 2, 9, 0.0),
@@ -59,6 +62,42 @@ public class RobotConstants {
 
     public static final double MAX_SPEED = 4.0; //TODO
     public static final double MAX_ANGULAR_VELOCITY = 0.0; //TODO
+
+    // WHEELS
+
+    public static final double DRIVE_GEAR_RATIO = (150.0 / 7.0); //TODO
+    public static final double STEER_GEAR_RATIO = 1.0; //TODO
+
+    public static final double DRIVE_TO_METERS = (WHEEL_DIAMETER * Math.PI) / DRIVE_GEAR_RATIO;
+    public static final double DRIVE_VEL_TO_METERS = ((WHEEL_DIAMETER * Math.PI) / DRIVE_GEAR_RATIO) / 60;
+
+    public static final double STEER_TO_METERS = (2 * Math.PI) / STEER_GEAR_RATIO;
+    public static final double STEER_VEL_TO_METERS = ((2 * Math.PI) / STEER_GEAR_RATIO) / 60;
+
+    public static final boolean STEER_ENC_INVERTED = false;
+    public static final boolean DRIVE_INVERTED = false;
+    public static final boolean STEER_INVERTED = true;
+
+    public static final double K_DRIVE_P = 0.5; //TODO
+    public static final double K_DRIVE_I = 0.0; //TODO
+    public static final double K_DRIVE_D = 0.0; //TODO
+    public static final double K_DRIVE_FF = 0.0; //TODO
+
+    public static final double K_STEER_P = 0.5; //TODO
+    public static final double K_STEER_I = 0.0; //TODO
+    public static final double K_STEER_D = 0.0; //TODO
+    public static final double K_STEER_FF = 0.0; //TODO
+
+    public static final IdleMode DRIVE_IDLE = IdleMode.kBrake;
+    public static final IdleMode STEER_IDLE = IdleMode.kCoast;
+
+    public static final double STEER_ENC_MIN = 0.0;
+    public static final double STEER_ENC_MAX = 2 * Math.PI; //TODO
+
+    public static final double STEER_OUT_MIN = -1;
+    public static final double STEER_OUT_MAX = 1;
+    public static final double DRIVE_OUT_MIN = -1;
+    public static final double DRIVE_OUT_MAX = 1;
 
     // SHOOTER
 
