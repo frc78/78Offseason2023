@@ -30,25 +30,25 @@ public class FalconModule implements SwerveModule {
     }
 
     @Override
-    public void resetToAbsolute() {
+    public void resetEncoders() {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public double getVelocity() {
+    public double getDriveVelocity() {
         // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
-    public Rotation2d getRelEncoderPosition() {
+    public double getDrivePosition() {
         // TODO Auto-generated method stub
-        return null;
+        return 0.0;
     }
 
     @Override
-    public Rotation2d getAbsEncoderPosition() {
+    public Rotation2d getSteerPosition() {
         // TODO Auto-generated method stub
         return null;
     }
