@@ -9,12 +9,15 @@ import com.ctre.phoenix.sensors.Pigeon2;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
+import frc.robot.Constants.Constants;
 import frc.robot.Constants.RobotConstants;
 
 public class Chassis extends SubsystemBase {
@@ -43,6 +46,9 @@ public class Chassis extends SubsystemBase {
     }
 
     pigeon = new Pigeon2(RobotConstants.PIGEON_ID);
+    // kinematics = new SwerveDriveKinematics(new Translation2d(-1, 1), new Translation2d(1, 1), new Translation2d(-1, -1), new Translation2d(1, -1));
+    kinematics = Constants.SWERVE_KINEMATICS;
+    poseEstimator = new SwerveDrivePoseEstimator(kinematics, Rotation2d.fromDegrees(getGyroRot()), getPositions(), new Pose2d());
   }
 
   public void initializeModules() {
@@ -82,6 +88,7 @@ public class Chassis extends SubsystemBase {
   public void drive() {
     for (int i = 0; i < modules.length; i++) {
       modules[i].setState(states[i]);
+      SmartDashboard.putNumber(i +" Rot", states[i].angle.getRadians());
     }
   }
 }

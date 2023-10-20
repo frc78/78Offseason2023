@@ -18,6 +18,8 @@ public class RobotContainer {
   public RobotContainer() {
     m_chassis = new Chassis();
 
+    m_driveController = new XboxController(0);
+
     m_chassis.setDefaultCommand(new Drive(
       m_chassis,
       m_driveController::getLeftY,

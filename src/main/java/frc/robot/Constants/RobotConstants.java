@@ -50,6 +50,8 @@ public class RobotConstants {
 
     public static final double WHEEL_WIDTH = Units.inchesToMeters(18.75); //Make sure this is from the wheel's center of rotation
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4); //TODO
+
+    // public static final  WHEEL_POSITIONS =  TODO
     
     public static final ModuleConfig[] MOD_CONFIGS = {
         new ModuleConfig(1, 2, 9, 0.0),
@@ -92,7 +94,7 @@ public class RobotConstants {
     public static final IdleMode STEER_IDLE = IdleMode.kCoast;
 
     public static final double STEER_ENC_MIN = 0.0;
-    public static final double STEER_ENC_MAX = 2 * Math.PI; //TODO
+    public static final double STEER_ENC_MAX = STEER_TO_METERS; //TODO
 
     public static final double STEER_OUT_MIN = -1;
     public static final double STEER_OUT_MAX = 1;

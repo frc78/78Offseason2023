@@ -4,6 +4,7 @@
 
 package frc.robot.Systems.Chassis;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -13,6 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Classes.ModuleConfig;
 import frc.robot.Constants.RobotConstants;
 
@@ -69,8 +71,8 @@ public class NeoModule implements SwerveModule {
     // Apply position and velocity conversion factors for the turning encoder. We
     // want these in radians and radians per second to use with WPILib's swerve
     // APIs.
-    steerEnc.setPositionConversionFactor(RobotConstants.STEER_TO_METERS);
-    steerEnc.setVelocityConversionFactor(RobotConstants.STEER_VEL_TO_METERS);
+    steerEnc.setPositionConversionFactor(RobotConstants.STEER_OUT_MIN); // TODO have to change this to be the encoder without the steering gear ratio
+    steerEnc.setVelocityConversionFactor(RobotConstants.STEER_OUT_MAX);
 
     // Invert the turning encoder, since the output shaft rotates in the opposite direction of
     // the steering motor in the MAXSwerve Module.
@@ -90,8 +92,7 @@ public class NeoModule implements SwerveModule {
     drivePID.setI(RobotConstants.K_DRIVE_I);
     drivePID.setD(RobotConstants.K_DRIVE_D);
     drivePID.setFF(RobotConstants.K_DRIVE_FF);
-    drivePID.setOutputRange(RobotConstants.DRIVE_OUT_MIN,
-        RobotConstants.DRIVE_OUT_MAX);
+    drivePID.setOutputRange(RobotConstants.DRIVE_OUT_MIN, RobotConstants.DRIVE_OUT_MAX);
 
     // Set the PID gains for the turning motor. Note these are example gains, and you
     // may need to tune them for your own robot!
@@ -99,8 +100,7 @@ public class NeoModule implements SwerveModule {
     steerPID.setI(RobotConstants.K_STEER_I);
     steerPID.setD(RobotConstants.K_STEER_D);
     steerPID.setFF(RobotConstants.K_STEER_FF);
-    steerPID.setOutputRange(RobotConstants.STEER_OUT_MIN,
-        RobotConstants.STEER_OUT_MAX);
+    steerPID.setOutputRange(RobotConstants.STEER_ENC_MIN, RobotConstants.STEER_ENC_MAX);
 
     drive.setIdleMode(RobotConstants.DRIVE_IDLE);
     steer.setIdleMode(RobotConstants.STEER_IDLE);
@@ -206,5 +206,7 @@ public class NeoModule implements SwerveModule {
         steerPID.setReference(optimizedState.angle.getRadians(),  CANSparkMax.ControlType.kPosition);
 
         desiredState = state;
+        SmartDashboard.putNumber(config.driveID + " setting rot", optimizedState.angle.getRadians());
+        SmartDashboard.putNumber(config.driveID + " getting rot", steerEnc.getPosition());
     }
 }
