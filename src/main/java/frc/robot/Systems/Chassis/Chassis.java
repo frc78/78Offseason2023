@@ -88,7 +88,7 @@ public class Chassis extends SubsystemBase {
   public void drive() {
     for (int i = 0; i < modules.length; i++) {
       modules[i].setState(states[i]);
-      SmartDashboard.putNumber(i +" Rot", states[i].angle.getRadians());
+      SmartDashboard.putNumber(i +" Rot", states[i].angle.getRadians()/(2 * Math.PI) + 0.5);
     }
   }
 }

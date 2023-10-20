@@ -85,7 +85,7 @@ public class RobotConstants {
     public static final double K_DRIVE_D = 0.0; //TODO
     public static final double K_DRIVE_FF = 0.0; //TODO
 
-    public static final double K_STEER_P = 0.5; //TODO
+    public static final double K_STEER_P = 0; //TODO
     public static final double K_STEER_I = 0.0; //TODO
     public static final double K_STEER_D = 0.0; //TODO
     public static final double K_STEER_FF = 0.0; //TODO
