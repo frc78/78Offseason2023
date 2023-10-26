@@ -71,8 +71,8 @@ public class NeoModule implements SwerveModule {
     // Apply position and velocity conversion factors for the turning encoder. We
     // want these in radians and radians per second to use with WPILib's swerve
     // APIs.
-    steerEnc.setPositionConversionFactor(-2 * Math.PI); // TODO have to change this to be the encoder without the steering gear ratio
-    steerEnc.setVelocityConversionFactor(RobotConstants.STEER_OUT_MAX);
+    steerEnc.setPositionConversionFactor(RobotConstants.STEER_ENC_POS_TO_METERS); // TODO have to change this to be the encoder without the steering gear ratio
+    steerEnc.setVelocityConversionFactor(RobotConstants.STEER_ENC_VEL_TO_METERS);
 
     // Invert the turning encoder, since the output shaft rotates in the opposite direction of
     // the steering motor in the MAXSwerve Module.
@@ -83,8 +83,8 @@ public class NeoModule implements SwerveModule {
     // to 10 degrees will go through 0 rather than the other direction which is a
     // longer route.
     steerPID.setPositionPIDWrappingEnabled(true);
-    steerPID.setPositionPIDWrappingMinInput(RobotConstants.STEER_ENC_MIN);
-    steerPID.setPositionPIDWrappingMaxInput(RobotConstants.STEER_ENC_MAX);
+    steerPID.setPositionPIDWrappingMinInput(RobotConstants.STEER_ENC_PID_MIN);
+    steerPID.setPositionPIDWrappingMaxInput(RobotConstants.STEER_ENC_PID_MAX);
 
     // Set the PID gains for the driving motor. Note these are example gains, and you
     // may need to tune them for your own robot!
@@ -100,7 +100,7 @@ public class NeoModule implements SwerveModule {
     steerPID.setI(RobotConstants.K_STEER_I);
     steerPID.setD(RobotConstants.K_STEER_D);
     steerPID.setFF(RobotConstants.K_STEER_FF);
-    steerPID.setOutputRange(RobotConstants.STEER_ENC_MIN, RobotConstants.STEER_ENC_MAX);
+    steerPID.setOutputRange(RobotConstants.STEER_OUT_MIN, RobotConstants.STEER_OUT_MAX);
 
     drive.setIdleMode(RobotConstants.DRIVE_IDLE);
     steer.setIdleMode(RobotConstants.STEER_IDLE);
@@ -199,14 +199,16 @@ public class NeoModule implements SwerveModule {
         correctedRot.speedMetersPerSecond = state.speedMetersPerSecond;
         correctedRot.angle = state.angle.plus(Rotation2d.fromRadians(config.offset));
         // Optimize the reference state to avoid spinning further than 90 degrees.
-        SwerveModuleState optimizedState = SwerveModuleState.optimize(correctedRot, getSteerPosition());
+    //    SwerveModuleState optimizedState = SwerveModuleState.optimize(correctedRot, getSteerPosition());
+       SwerveModuleState optimizedState = correctedRot;
+
 
         //Sets the PID goals to the desired states
         drivePID.setReference(optimizedState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);
-        steerPID.setReference(optimizedState.angle.getRadians()/ (2 * Math.PI) + 0.5,  CANSparkMax.ControlType.kPosition);
+        steerPID.setReference(optimizedState.angle.getRadians(),  CANSparkMax.ControlType.kPosition);
 
         desiredState = state;
-        SmartDashboard.putNumber(config.driveID + " setting rot", optimizedState.angle.getRadians()/ (2 * Math.PI) + 0.5);//Changed this to divide by 2 pi and ad o.5 to map the joystick input (-pi to pi) to a zero to 1
+        SmartDashboard.putNumber(config.driveID + " setting rot", optimizedState.angle.getRadians() );//Changed this to divide by 2 pi and ad o.5 to map the joystick input (-pi to pi) to a zero to 1
         SmartDashboard.putNumber(config.driveID + " getting rot", steerEnc.getPosition());
     }
 }
