@@ -76,6 +76,8 @@ public class NeoModule implements SwerveModule {
 
     // Invert the turning encoder, since the output shaft rotates in the opposite direction of
     // the steering motor in the MAXSwerve Module.
+    drive.setInverted(RobotConstants.STEER_ENC_INVERTED);
+    steer.setInverted(RobotConstants.STEER_ENC_INVERTED);
     steerEnc.setInverted(RobotConstants.STEER_ENC_INVERTED);
 
     // Enable PID wrap around for the turning motor. This will allow the PID
