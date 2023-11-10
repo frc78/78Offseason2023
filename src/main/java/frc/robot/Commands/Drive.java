@@ -61,27 +61,27 @@ public class Drive extends CommandBase{
   public void execute() {
     // Maps the Y, B, A, X buttons to create a vector and then gets the direction of the vector using trigonometry,
     // then fits it to the range [0, 2 * PI)
-    double x = (upSupplier.getAsBoolean() ? 1 : 0) - (downSupplier.getAsBoolean() ? 1 : 0);
-    double y = (rightSupplier.getAsBoolean() ? 1 : 0) - (leftSupplier.getAsBoolean() ? 1 : 0);
-    double dir = Math.atan2(y, x);
-    dir = dir < 0 ? dir + 2 * Math.PI : dir;
+    //double x = (upSupplier.getAsBoolean() ? 1 : 0) - (downSupplier.getAsBoolean() ? 1 : 0);
+    //double y = (rightSupplier.getAsBoolean() ? 1 : 0) - (leftSupplier.getAsBoolean() ? 1 : 0);
+   // double dir = Math.atan2(y, x);
+    //dir = dir < 0 ? dir + 2 * Math.PI : dir;
 
-    thetaPID.setSetpoint(dir * -1);
+    //thetaPID.setSetpoint(dir * -1);
 
     ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
-      triggerAdjust(modifyAxis(-xSupplier.getAsDouble())) * RobotConstants.MAX_SPEED,
-      triggerAdjust(modifyAxis(-ySupplier.getAsDouble())) * RobotConstants.MAX_SPEED,
-      triggerAdjust(modifyAxis(-rotSupplier.getAsDouble())) * RobotConstants.MAX_ANGULAR_VELOCITY,
+      modifyAxis(-xSupplier.getAsDouble()) * RobotConstants.MAX_SPEED/2,
+      modifyAxis(-ySupplier.getAsDouble()) * RobotConstants.MAX_SPEED/2,
+      modifyAxis(-rotSupplier.getAsDouble()) * RobotConstants.MAX_ANGULAR_VELOCITY,
       chassis.getFusedPose().getRotation());
 
-    double currentRot = chassis.getFusedPose().getRotation().getRadians() % (Math.PI * 2);
-    double dpadSpeed =
-      upSupplier.getAsBoolean() || rightSupplier.getAsBoolean() || downSupplier.getAsBoolean() || leftSupplier.getAsBoolean()
-      ? thetaPID.calculate(currentRot) : 0;
-    speeds = new ChassisSpeeds(
-      xLimiter.calculate(speeds.vxMetersPerSecond),
-      yLimiter.calculate(speeds.vyMetersPerSecond),
-      thetaLimiter.calculate(speeds.omegaRadiansPerSecond) + dpadSpeed);
+   // double currentRot = chassis.getFusedPose().getRotation().getRadians() % (Math.PI * 2);
+  //  double dpadSpeed =
+     // upSupplier.getAsBoolean() || rightSupplier.getAsBoolean() || downSupplier.getAsBoolean() || leftSupplier.getAsBoolean()
+      //? thetaPID.calculate(currentRot) : 0;
+   // speeds = new ChassisSpeeds(
+     // xLimiter.calculate(speeds.vxMetersPerSecond),
+      //yLimiter.calculate(speeds.vyMetersPerSecond),
+     // thetaLimiter.calculate(speeds.omegaRadiansPerSecond) + dpadSpeed);
     chassis.chassisSpeed = speeds;
     chassis.convertToStates(); 
     chassis.drive();

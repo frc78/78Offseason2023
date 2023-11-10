@@ -80,12 +80,12 @@ public class RobotConstants {
     public static final boolean DRIVE_INVERTED = false;
     public static final boolean STEER_INVERTED = true;
 
-    public static final double K_DRIVE_P = 0.5; //TODO
+    public static final double K_DRIVE_P = 1.5; //TODO
     public static final double K_DRIVE_I = 0.0; //TODO
     public static final double K_DRIVE_D = 0.0; //TODO
     public static final double K_DRIVE_FF = 0.0; //TODO
 
-    public static final double K_STEER_P = 1; //TODO
+    public static final double K_STEER_P = 0.7; //TODO
     public static final double K_STEER_I = 0.0; //TODO
     public static final double K_STEER_D = 0.0; //TODO
     public static final double K_STEER_FF = 0.0; //TODO
@@ -98,8 +98,8 @@ public class RobotConstants {
 
     public static final double STEER_OUT_MIN = -1;
     public static final double STEER_OUT_MAX = 1;
-    public static final double DRIVE_OUT_MIN = -1;
-    public static final double DRIVE_OUT_MAX = 1;
+    public static final double DRIVE_OUT_MIN = -0.5;
+    public static final double DRIVE_OUT_MAX = 0.5;
 
     // SHOOTER
 
