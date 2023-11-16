@@ -46,7 +46,6 @@ public class Chassis extends SubsystemBase {
     }
 
     pigeon = new Pigeon2(RobotConstants.PIGEON_ID);
-    // kinematics = new SwerveDriveKinematics(new Translation2d(-1, 1), new Translation2d(1, 1), new Translation2d(-1, -1), new Translation2d(1, -1));
     kinematics = Constants.SWERVE_KINEMATICS;
     poseEstimator = new SwerveDrivePoseEstimator(kinematics, Rotation2d.fromDegrees(getGyroRot()), getPositions(), new Pose2d());
   }
@@ -61,8 +60,6 @@ public class Chassis extends SubsystemBase {
   public Pose2d getFusedPose() {
     return poseEstimator.getEstimatedPosition();
   }
-
-  // public void addInput(double input, double weight) {}
 
   @Override
   public void periodic() {

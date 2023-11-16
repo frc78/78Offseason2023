@@ -62,7 +62,8 @@ public class RobotConstants {
 
     public static final int PIGEON_ID = 0;
 
-    public static final double MAX_SPEED = 4.0; //TODO
+    // public static final double MAX_SPEED = 4.0; //TODO
+    public static final double MAX_SPEED = 2.0; //TODO
     public static final double MAX_ANGULAR_VELOCITY = Math.PI; //TODO//set temporarily to look into later
 
     // WHEELS
