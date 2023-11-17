@@ -69,15 +69,15 @@ public class Drive extends CommandBase{
     //thetaPID.setSetpoint(dir * -1);
 
     // ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
-    //   modifyAxis(-xSupplier.getAsDouble()) * RobotConstants.MAX_SPEED/2,
-    //   modifyAxis(-ySupplier.getAsDouble()) * RobotConstants.MAX_SPEED/2,
+    //   modifyAxis(-xSupplier.getAsDouble()) * RobotConstants.MAX_SPEED,
+    //   modifyAxis(-ySupplier.getAsDouble()) * RobotConstants.MAX_SPEED,
     //   modifyAxis(-rotSupplier.getAsDouble()) * RobotConstants.MAX_ANGULAR_VELOCITY,
     //   chassis.getFusedPose().getRotation());
 
       ChassisSpeeds speeds = new ChassisSpeeds(
-      modifyAxis(xSupplier.getAsDouble()) * RobotConstants.MAX_SPEED,
-      modifyAxis(-ySupplier.getAsDouble()) * RobotConstants.MAX_SPEED,
-      modifyAxis(-rotSupplier.getAsDouble()) * RobotConstants.MAX_ANGULAR_VELOCITY
+        xSupplier.getAsDouble() * RobotConstants.MAX_SPEED,
+        -ySupplier.getAsDouble() * RobotConstants.MAX_SPEED,
+        -rotSupplier.getAsDouble() * RobotConstants.MAX_ANGULAR_VELOCITY
       );
 
    // double currentRot = chassis.getFusedPose().getRotation().getRadians() % (Math.PI * 2);

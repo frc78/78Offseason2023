@@ -23,7 +23,7 @@ import frc.robot.Constants.RobotConstants;
 public class Chassis extends SubsystemBase {
   public SwerveModule[] modules;
   public ChassisSpeeds chassisSpeed;
-  public SwerveModuleState states[];
+  public SwerveModuleState[] states;
   
   private SwerveDriveKinematics kinematics;
   private SwerveDrivePoseEstimator poseEstimator;
