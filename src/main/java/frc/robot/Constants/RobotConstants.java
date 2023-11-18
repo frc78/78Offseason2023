@@ -68,9 +68,8 @@ public class RobotConstants {
 
     // WHEELS
 
-    // public static final double DRIVE_GEAR_RATIO = (150.0 / 7.0); //TODO
     public static final double DRIVE_GEAR_RATIO = (6.75); //TODO
-    public static final double STEER_GEAR_RATIO = 1.0; //TODO
+    public static final double STEER_GEAR_RATIO = 1.0; //TODO, should be 150.0 / 7.0
 
     public static final double DRIVE_TO_METERS = (WHEEL_DIAMETER * Math.PI) / DRIVE_GEAR_RATIO;
     public static final double DRIVE_VEL_TO_METERS = ((WHEEL_DIAMETER * Math.PI) / DRIVE_GEAR_RATIO) / 60;
@@ -78,9 +77,9 @@ public class RobotConstants {
     public static final double STEER_ENC_POS_TO_METERS = (2 * Math.PI); //factor of steer encoder to meters(conversion factor)
     public static final double STEER_ENC_VEL_TO_METERS = (2 * Math.PI) / 60;//factor of vel to meters
 
-    public static final boolean STEER_ENC_INVERTED = false;
     public static final boolean DRIVE_INVERTED = false;
-    public static final boolean STEER_INVERTED = true;
+    public static final boolean STEER_INVERTED = false;
+    public static final boolean STEER_ENC_INVERTED = true;
 
     public static final double K_DRIVE_P = 0.1; //TODO
     public static final double K_DRIVE_I = 0.0; //TODO

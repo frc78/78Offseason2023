@@ -75,7 +75,7 @@ public class Drive extends CommandBase{
     //   chassis.getFusedPose().getRotation());
 
       ChassisSpeeds speeds = new ChassisSpeeds(
-        xSupplier.getAsDouble() * RobotConstants.MAX_SPEED,
+        -xSupplier.getAsDouble() * RobotConstants.MAX_SPEED,
         -ySupplier.getAsDouble() * RobotConstants.MAX_SPEED,
         -rotSupplier.getAsDouble() * RobotConstants.MAX_ANGULAR_VELOCITY
       );
