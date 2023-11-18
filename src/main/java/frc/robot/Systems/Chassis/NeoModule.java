@@ -76,7 +76,7 @@ public class NeoModule implements SwerveModule {
 
     // Invert the turning encoder, since the output shaft rotates in the opposite direction of
     // the steering motor in the MAXSwerve Module.
-    steerEnc.setInverted(false);
+    steerEnc.setInverted(RobotConstants.STEER_ENC_INVERTED);
 
     // Enable PID wrap around for the turning motor. This will allow the PID
     // controller to go through 0 to get to the setpoint i.e. going from 350 degrees
@@ -197,9 +197,9 @@ public class NeoModule implements SwerveModule {
         SwerveModuleState correctedRot = new SwerveModuleState();
         correctedRot.speedMetersPerSecond = state.speedMetersPerSecond;
         correctedRot.angle = state.angle.plus(Rotation2d.fromRadians(config.offset));
-        // Optimize the reference state to avoid spinning further than 90 degrees.
-    //    SwerveModuleState optimizedState = SwerveModuleState.optimize(correctedRot, getSteerPosition());
-       SwerveModuleState optimizedState = correctedRot;
+         //Optimize the reference state to avoid spinning further than 90 degrees.
+        //SwerveModuleState optimizedState = SwerveModuleState.optimize(correctedRot, getSteerPosition());
+        SwerveModuleState optimizedState = correctedRot;
 
         //Sets the PID goals to the desired states
         drivePID.setReference(optimizedState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);
