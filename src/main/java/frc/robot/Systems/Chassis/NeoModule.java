@@ -4,12 +4,12 @@
 
 package frc.robot.Systems.Chassis;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
@@ -41,7 +41,7 @@ public class NeoModule implements SwerveModule {
         steer = new CANSparkMax(this.config.steerID, MotorType.kBrushless);
 
         driveEnc = drive.getEncoder();
-        steerEnc = steer.getAbsoluteEncoder(com.revrobotics.SparkMaxAbsoluteEncoder.Type.kDutyCycle);
+        steerEnc = steer.getAbsoluteEncoder(Type.kDutyCycle);
         drivePID = drive.getPIDController();
         steerPID = steer.getPIDController();
 
@@ -145,7 +145,7 @@ public class NeoModule implements SwerveModule {
      */
     @Override
     public Rotation2d getSteerPosition() {
-        return Rotation2d.fromDegrees(steerEnc.getPosition() - config.offset);
+        return Rotation2d.fromRadians(steerEnc.getPosition());
     }
 
     /**
@@ -195,11 +195,8 @@ public class NeoModule implements SwerveModule {
     @Override
     public void setState(SwerveModuleState state) {
         SwerveModuleState correctedRot = new SwerveModuleState();
-        correctedRot.speedMetersPerSecond = state.speedMetersPerSecond;
-        correctedRot.angle = state.angle.plus(Rotation2d.fromRadians(config.offset));
          //Optimize the reference state to avoid spinning further than 90 degrees.
-        //SwerveModuleState optimizedState = SwerveModuleState.optimize(correctedRot, getSteerPosition());
-        SwerveModuleState optimizedState = correctedRot;
+        SwerveModuleState optimizedState = SwerveModuleState.optimize(state, getSteerPosition());
 
         //Sets the PID goals to the desired states
         drivePID.setReference(optimizedState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);

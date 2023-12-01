@@ -4,7 +4,6 @@
 
 package frc.robot.Constants;
 
-import com.ctre.phoenix.motorcontrol.InvertType;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.util.Units;

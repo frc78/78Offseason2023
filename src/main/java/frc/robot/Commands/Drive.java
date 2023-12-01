@@ -10,12 +10,12 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.Systems.Chassis.Chassis;
 
 /** This is the command for teleoperation of the chassis */
-public class Drive extends CommandBase{
+public class Drive extends Command{
     private Chassis chassis;
     private final DoubleSupplier xSupplier;
     private final DoubleSupplier ySupplier;

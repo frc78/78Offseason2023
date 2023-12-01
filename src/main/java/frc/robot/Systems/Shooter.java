@@ -4,8 +4,8 @@
 
 package frc.robot.Systems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.ControlModeValue;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -15,7 +15,7 @@ import frc.robot.Constants.RobotConstants;
 public class Shooter extends SubsystemBase {
   
   private TalonFX flywheelMain;
-  private TalonFX flywheelFollow;
+  // private TalonFX flywheelFollow;
   private TalonFX backFlywheel;
   private TalonFX feed;
 
@@ -24,9 +24,6 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     flywheelMain = new TalonFX(RobotConstants.FLYWHEEL_M_ID);
-    flywheelFollow = new TalonFX(RobotConstants.FLYWHEEL_F_ID);
-    flywheelFollow.follow(flywheelMain);
-    flywheelFollow.setInverted(true); //TODO MUST CHECK IF THIS WILL INVERT CORRECTLY
 
     velPID.setPID(RobotConstants.FLYWHEEL_P, RobotConstants.FLYWHEEL_I, RobotConstants.FLYWHEEL_D);
     feedforward = new SimpleMotorFeedforward(RobotConstants.FLYWHEEL_KS, RobotConstants.FLYWHEEL_KV, RobotConstants.FLYWHEEL_KA);
@@ -35,7 +32,7 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic () {
     
-    flywheelMain.set(ControlMode.Velocity, velPID.calculate(flywheelMain.getSelectedSensorVelocity()));
+    flywheelMain.set(velPID.calculate(flywheelMain.getRotorVelocity().getValueAsDouble()));
   }
 
   public void setFlywheel(double speed) {

@@ -4,7 +4,7 @@
 
 package frc.robot.Systems.Chassis;
 
-import com.ctre.phoenix.sensors.Pigeon2;
+import com.ctre.phoenix6.hardware.Pigeon2;
 
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -67,7 +67,7 @@ public class Chassis extends SubsystemBase {
   }
 
   public double getGyroRot() {
-    return pigeon.getYaw();
+    return pigeon.getYaw().getValueAsDouble();
   }
 
   public SwerveModulePosition[] getPositions () {
