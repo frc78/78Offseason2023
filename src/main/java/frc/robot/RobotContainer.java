@@ -10,15 +10,18 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Systems.*;
 import frc.robot.Systems.Chassis.*;
 import frc.robot.Commands.*;
+import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class RobotContainer {
   private Chassis m_chassis;
-  private XboxController m_driveController;
+  private XboxController m_driveController, m_manipController;
 
   public RobotContainer() {
     m_chassis = new Chassis();
 
     m_driveController = new XboxController(0);
+    m_manipController = new XboxController(1);
 
     m_chassis.setDefaultCommand(new Drive(
       m_chassis,
@@ -34,7 +37,10 @@ public class RobotContainer {
       ));
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+    Button shoot = new JoystickButton(m_manipController, 2);//Bandaid fix
+    //shoot.whenHeld(new IntakeNoFeed(m_intake, m_indexer));
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");

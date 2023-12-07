@@ -103,21 +103,28 @@ public class RobotConstants {
 
     // SHOOTER
 
-    public static final int FLYWHEEL_M_ID = 0; //TODO
-    public static final int FLYWHEEL_F_ID = 0; //TODO
-    public static final int BACK_FLYWHEEL_ID = 0; //TODO
-    public static final int FEED_ID = 0; //TODO
-    public static final int BELT_ID = 0; //TODO
+    public static final int LeftShoot = 18;// temporary value will fill in later. 
+    public static final boolean DEBUG = false;
+    public static final int BeltNeo = 10;
+    public static final int WheelNeo = 11;
 
-    //PID Consants
-    public static final double FLYWHEEL_P = 1; //TODO
-    public static final double FLYWHEEL_I = 0; //TODO
-    public static final double FLYWHEEL_D = 0; //TODO
-    //Feedforward Constants
-    public static final double FLYWHEEL_KS = 1; //TODO
-    public static final double FLYWHEEL_KV = 0; //TODO
-    public static final double FLYWHEEL_KA = 0; //TODO
+    //public static final int RightShoot = 9;
 
-    /** Hood's angle of elevation in degrees */
-    public static final double HOOD_ANGLE = 45.0; //TODO
+    // public static final int FLYWHEEL_M_ID = 0; //TODO
+    // public static final int FLYWHEEL_F_ID = 0; //TODO
+    // public static final int BACK_FLYWHEEL_ID = 0; //TODO
+    // public static final int FEED_ID = 0; //TODO
+    // public static final int BELT_ID = 0; //TODO
+
+    // //PID Consants
+    // public static final double FLYWHEEL_P = 1; //TODO
+    // public static final double FLYWHEEL_I = 0; //TODO
+    // public static final double FLYWHEEL_D = 0; //TODO
+    // //Feedforward Constants
+    // public static final double FLYWHEEL_KS = 1; //TODO
+    // public static final double FLYWHEEL_KV = 0; //TODO
+    // public static final double FLYWHEEL_KA = 0; //TODO
+
+    // /** Hood's angle of elevation in degrees */
+    // public static final double HOOD_ANGLE = 45.0; //TODO
 }
