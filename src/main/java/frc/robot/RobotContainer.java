@@ -38,8 +38,26 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    Button shoot = new JoystickButton(m_manipController, 2);//Bandaid fix
-    //shoot.whenHeld(new IntakeNoFeed(m_intake, m_indexer));
+    BooleanSupplier rightSupplier = new BooleanSupplier(){
+      public boolean getAsBoolean(){
+        return m_manipController.getRightTriggerAxis() > 0.5;
+      }
+    };
+    new Trigger(rightSupplier).whileTrue(new SpinUp(m_shooter));
+
+    BooleanSupplier leftSupplier = new BooleanSupplier(){
+      public boolean getAsBoolean(){
+        return m_manipController.getLeftTriggerAxis() > 0.5;
+      }
+    };
+    new Trigger(leftSupplier).whileTrue(new Shoot(m_feed, m_feedWheel));
+
+
+      Button manipControllerRT = new JoystickButton(m_manipController, 2);
+    manipControllerRT.whenHeld(new Fire(m_feed, m_feedWheel, m_shooter));
+
+    Button manipControllerLT = new JoystickButton(m_manipController, 7);
+    manipControllerLT.whileHeld(new SpinUp(m_shooter, Constants.spinupVel2, true));
   }
 
   public Command getAutonomousCommand() {
