@@ -4,45 +4,31 @@
 
 package frc.robot.Commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Systems.Shooter;
+import frc.robot.Systems.Feed;
 
-public class SpinUp extends CommandBase {
-  private Shooter shooter;
-  private double vel;
-  private boolean isHood;
-
-
-  /** Creates a new Shoot. */
-  public SpinUp(Shooter shooter, double Velocity, boolean isHood) {
-    this.shooter = shooter;
-    this.vel = Velocity;
-    this.isHood = isHood;
-    
+public class FeedRun extends CommandBase {
+  private Feed m_feed;
+  /** Creates a new FeedRun. */
+  public FeedRun(Feed subsystem) {
+    m_feed = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    System.out.println("Starting spin up!");
-    this.shooter.isHood(isHood);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    shooter.startWheel(vel);
-
+    m_feed.feedRun(0.5);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.stopWheely();
+    m_feed.stopFeed();
   }
 
   // Returns true when the command should end.

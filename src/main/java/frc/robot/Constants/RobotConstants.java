@@ -107,6 +107,7 @@ public class RobotConstants {
     public static final boolean DEBUG = false;
     public static final int BeltNeo = 10;
     public static final int WheelNeo = 11;
+    public static final int spinupVel = 3000;
 
     //public static final int RightShoot = 9;
 
