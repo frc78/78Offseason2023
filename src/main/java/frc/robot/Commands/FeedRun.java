@@ -4,10 +4,10 @@
 
 package frc.robot.Commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Systems.Feed;
 
-public class FeedRun extends CommandBase {
+public class FeedRun extends Command {
   private Feed m_feed;
   /** Creates a new FeedRun. */
   public FeedRun(Feed subsystem) {

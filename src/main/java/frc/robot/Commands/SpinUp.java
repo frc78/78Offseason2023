@@ -5,10 +5,10 @@
 package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Systems.Shooter;
 
-public class SpinUp extends CommandBase {
+public class SpinUp extends Command {
   private Shooter shooter;
   private double vel;
   private boolean isHood;

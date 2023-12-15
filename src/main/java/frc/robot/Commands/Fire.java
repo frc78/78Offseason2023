@@ -4,13 +4,13 @@
 
 package frc.robot.Commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Systems.Feed;
 //import frc.robot.Systems.Indexer;
 //import frc.robot.Systems.Intake;
 import frc.robot.Systems.FeedWheel;
 
-public class Fire extends CommandBase {
+public class Fire extends Command {
   private Feed m_feed;
   private FeedWheel m_feedWheel;
   /** Creates a new RunFeed. */

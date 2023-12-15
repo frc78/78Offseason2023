@@ -54,10 +54,10 @@ public class RobotConstants {
     // public static final  WHEEL_POSITIONS =  TODO
     
     public static final ModuleConfig[] MOD_CONFIGS = {
-        new ModuleConfig(1, 2, 9, 2.50),
-        new ModuleConfig(3, 4, 10, 5.04),
-        new ModuleConfig(5, 6, 11, 5.91),
-        new ModuleConfig(7, 8, 12, 4.97)
+        new ModuleConfig(1, 2, 9, 0),
+        new ModuleConfig(3, 4, 10, 0),
+        new ModuleConfig(5, 6, 11, 0),
+        new ModuleConfig(7, 8, 12, 0)
     };
 
     public static final int PIGEON_ID = 0;
